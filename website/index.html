@@ -13,8 +13,11 @@
   </head>
   <body>
     <header class="header">
+      <!-- <a href="#">
+        <img class="logo" alt="Spoonflower logo" src="spoonflower-logo.png" />
+      </a> -->
       <a href="#">
-        <img class="logo" alt="Omnifood logo" src="img/omnifood-logo.png" />
+        <img class="logo" alt="Spoonflower logo" src="spoonflower_logo.png" />
       </a>
 
       <nav class="main-nav">
@@ -35,8 +38,15 @@
         <label for="term">What is your design?</label>
         <input type="text" id="term" placeholder="search for design" />
 
-        <label for="sort-select">Sort by</label>
+        <label for="product-select">Products</label>
+        <select name="products" id="product-select">
+          <!-- <option value="">--Please choose an option--</option> -->
+          <option value="Fabric">Fabric</option>
+          <option value="Wallpaper">Wallpaper</option>
+          <option value="Living_Decor">Home Decor</option>
+        </select>
 
+        <label for="sort-select">Sort by</label>
         <select name="sort" id="sort-select">
           <!-- <option value="">--Please choose an option--</option> -->
           <option value="bestSelling">Best Selling</option>
@@ -44,14 +54,44 @@
           <option value="mostFavorited">Most Favorited</option>
           <option value="mostRelevant">Most Relevant</option>
         </select>
+
+        <label for="color-select">Sort by</label>
+        <select name="color" id="color-select">
+          <option value="all colors">All Colors</option>
+          <option value="black">Black</option>
+          <option value="brown">Brown</option>
+          <option value="grey">Grey</option>
+          <option value="white">White</option>
+          <option value="yellow">Yellow</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="purple">Purple</option>
+          <option value="pink">Pink</option>
+          <option value="red">Red</option>
+          <option value="orange">Orange</option>
+        </select>
+
+        <label for="style-select">Style</label>
+        <select name="style" id="style-select">
+          <option value="all styles">All Styles</option>
+          <option value="Modern">Modern</option>
+          <option value="Traditional">Traditional</option>
+          <option value="Historical">Historical</option>
+          <option value="Nautical">Nautical</option>
+          <option value="Artistic">Artistic</option>
+          <option value="Shapes">Shapes</option>
+          <option value="Texture">Texture</option>
+          <option value="Geography">Geography</option>
+          <option value="Worldly">Worldly</option>
+        </select>
       </form>
       <button id="search" type="submit">Find Designs</button>
     </section>
 
     <section class="container">
-      <div class="design-box">
+      <!-- <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -65,7 +105,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -79,7 +119,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -93,7 +133,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -107,7 +147,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -121,7 +161,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height=294"" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -135,7 +175,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -149,7 +189,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -163,7 +203,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -177,7 +217,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -191,7 +231,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -205,7 +245,7 @@
       </div>
       <div class="design-box">
         <div class="design-image">
-          <img height="" width="" class="design-pic" src="" alt="" />
+          <img height="294" width="294" class="design-pic" src="" alt="" />
         </div>
         <div class="design-text">
           <span itemprop="name"></span>
@@ -216,7 +256,7 @@
           </p>
         </div>
         <a class="" href="">back home</a>
-      </div>
+      </div> -->
     </section>
 
     <footer>

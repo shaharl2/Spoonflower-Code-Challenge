@@ -19,6 +19,7 @@ app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static("website"));
+// app.use(express.static("public"));
 
 // Setup Server
 
@@ -43,6 +44,7 @@ function addData(req, res) {
   projectData["id"] = req.body.id;
   projectData["name"] = req.body.name;
   projectData["designer"] = req.body.designer;
+  projectData["product"] = req.body.product;
   // projectData["term"] = req.body.term;
   // projectData["sort"] = req.body.sort;
   console.log(req.body);
