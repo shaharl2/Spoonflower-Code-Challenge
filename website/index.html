@@ -9,7 +9,19 @@
       href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/afd6aa68df.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header class="header">
@@ -23,7 +35,7 @@
       <nav class="main-nav">
         <ul class="main-nav-list">
           <li><a class="main-nav-link" href="#how">How it works</a></li>
-          <li><a class="main-nav-link" href="#meals">Promos</a></li>
+          <li><a class="main-nav-link" href="#join">Join</a></li>
           <li>
             <a class="main-nav-link" href="#testimonials">Our Community</a>
           </li>
@@ -35,57 +47,93 @@
 
     <section class="user-box">
       <form>
-        <label for="term">What is your design?</label>
-        <input type="text" id="term" placeholder="search for design" />
+        <!-- <div class="search-box"> -->
+        <!-- <button class="btn-search" id="search" type="submit">
+            <i class="fas fa-search"></i>
+          </button> -->
+        <!-- <label for="term">What</label>
+          <input
+            type="text"
+            id="term"
+            class="input-search"
+            placeholder="Type to Search..."
+          />
+        </div> -->
 
-        <label for="product-select">Products</label>
-        <select name="products" id="product-select">
-          <!-- <option value="">--Please choose an option--</option> -->
-          <option value="Fabric">Fabric</option>
-          <option value="Wallpaper">Wallpaper</option>
-          <option value="Living_Decor">Home Decor</option>
-        </select>
+        <!-- <label for="term">What is your design?</label>
+        <input type="text" id="term" placeholder="search for design" /> -->
 
-        <label for="sort-select">Sort by</label>
-        <select name="sort" id="sort-select">
-          <!-- <option value="">--Please choose an option--</option> -->
-          <option value="bestSelling">Best Selling</option>
-          <option value="newest">Newest</option>
-          <option value="mostFavorited">Most Favorited</option>
-          <option value="mostRelevant">Most Relevant</option>
-        </select>
+        <label class="selectdiv" for="product-select"
+          >Products
+          <select name="products" id="product-select">
+            <!-- <option value="">--Please choose an option--</option> -->
+            <!-- <option selected>Products</option> -->
+            <option value="Fabric">Fabric</option>
+            <option value="Wallpaper">Wallpaper</option>
+            <option value="Living_Decor">Home Decor</option>
+          </select>
+        </label>
+        <label class="selectdiv" for="sort-select"
+          >Sort by
+          <select name="sort" id="sort-select">
+            <!-- <option value="">--Please choose an option--</option> -->
+            <option value="bestSelling">Best Selling</option>
+            <option value="newest">Newest</option>
+            <option value="mostFavorited">Most Favorited</option>
+            <option value="mostRelevant">Most Relevant</option>
+          </select>
+        </label>
+        <label class="selectdiv" for="color-select"
+          >Sort by
+          <select name="color" id="color-select">
+            <option value="all colors">All Colors</option>
+            <option value="black">Black</option>
+            <option value="brown">Brown</option>
+            <option value="grey">Grey</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="purple">Purple</option>
+            <option value="pink">Pink</option>
+            <option value="red">Red</option>
+            <option value="orange">Orange</option>
+          </select>
+        </label>
 
-        <label for="color-select">Sort by</label>
-        <select name="color" id="color-select">
-          <option value="all colors">All Colors</option>
-          <option value="black">Black</option>
-          <option value="brown">Brown</option>
-          <option value="grey">Grey</option>
-          <option value="white">White</option>
-          <option value="yellow">Yellow</option>
-          <option value="green">Green</option>
-          <option value="blue">Blue</option>
-          <option value="purple">Purple</option>
-          <option value="pink">Pink</option>
-          <option value="red">Red</option>
-          <option value="orange">Orange</option>
-        </select>
-
-        <label for="style-select">Style</label>
-        <select name="style" id="style-select">
-          <option value="all styles">All Styles</option>
-          <option value="Modern">Modern</option>
-          <option value="Traditional">Traditional</option>
-          <option value="Historical">Historical</option>
-          <option value="Nautical">Nautical</option>
-          <option value="Artistic">Artistic</option>
-          <option value="Shapes">Shapes</option>
-          <option value="Texture">Texture</option>
-          <option value="Geography">Geography</option>
-          <option value="Worldly">Worldly</option>
-        </select>
+        <label class="selectdiv" for="style-select"
+          >Style
+          <select name="style" id="style-select">
+            <option value="all styles">All Styles</option>
+            <option value="Modern">Modern</option>
+            <option value="Traditional">Traditional</option>
+            <option value="Historical">Historical</option>
+            <option value="Nautical">Nautical</option>
+            <option value="Artistic">Artistic</option>
+            <option value="Shapes">Shapes</option>
+            <option value="Texture">Texture</option>
+            <option value="Geography">Geography</option>
+            <option value="Worldly">Worldly</option>
+          </select>
+        </label>
       </form>
-      <button id="search" type="submit">Find Designs</button>
+      <!-- <button id="search" type="submit">Find Designs</button> -->
+
+      <div class="search-box">
+        <button class="btn-search" id="search" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+        <!-- <button class="btn-search" id="search" type="submit">
+          <i class="fas fa-search"></i>
+        </button> -->
+        <label for="term">What</label>
+        <input
+          type="text"
+          id="term"
+          class="input-search"
+          placeholder="Type to Search..."
+        />
+      </div>
     </section>
 
     <section class="container">
@@ -257,6 +305,75 @@
         </div>
         <a class="" href="">back home</a>
       </div> -->
+    </section>
+
+    <section class="section-how" id="how">
+      <div class="content">
+        <span class="subheading">How it works</span>
+        <h2 class="heading-secondary">
+          Spoonflower makes it easy to customize fabric, wallpaper & home decor
+        </h2>
+      </div>
+
+      <div class="content grid grid--2-cols grid--center-v">
+        <!-- STEP 01 -->
+        <div class="step-text-box">
+          <p class="step-number">01</p>
+          <h3 class="heading-tertiary">Select or upload a design</h3>
+          <p class="step-description">
+            Shop from thousands of independent artists or upload your own design
+            or photo.
+          </p>
+        </div>
+        <div></div>
+
+        <!-- <div class="step-img-box">
+          <img
+            src="img/app/app-screen-1.png"
+            class="step-img"
+            alt="iPhone app
+          preferences selection screen"
+          />
+        </div> -->
+
+        <!-- STEP 02 -->
+        <!-- <div class="step-img-box">
+          <img
+            src="img/app/app-screen-2.png"
+            class="step-img"
+            alt="iPhone app
+          meal approving plan screen"
+          />
+        </div> -->
+        <div></div>
+
+        <div class="step-text-box">
+          <p class="step-number">02</p>
+          <h3 class="heading-tertiary">Order it on any product</h3>
+          <p class="step-description">
+            Order the design on the product of your choice, from fabric to
+            pillows to duvets.
+          </p>
+        </div>
+
+        <!-- STEP 03 -->
+        <div class="step-text-box">
+          <p class="step-number">03</p>
+          <h3 class="heading-tertiary">We print it and ship it</h3>
+          <p class="step-description">
+            We print, sew it in-house and ship it all over the world!
+          </p>
+        </div>
+        <div></div>
+        <!-- <div class="step-img-box">
+          <img
+            src="img/app/app-screen-3.png"
+            class="step-img"
+            alt="iPhone app
+          delivery screen"
+          />
+        </div> -->
+      </div>
     </section>
 
     <footer>

@@ -13,6 +13,32 @@ const designs = document.querySelectorAll("article");
 const designsArray = Array.from(designs);
 const designsContainer = document.querySelector("section.container");
 
+//sticky navigation
+
+const sectionUser = document.querySelector(".user-box");
+
+const obs = new IntersectionObserver(
+  function (entries) {
+    const ent = entries[0];
+    console.log(ent);
+
+    if (ent.isIntersecting === false) {
+      document.body.classList.add("sticky");
+    }
+
+    if (ent.isIntersecting === true) {
+      document.body.classList.remove("sticky");
+    }
+  },
+  {
+    // In the viewport
+    root: null,
+    threshold: 0,
+    // rootMargin: "-80px",
+  }
+);
+obs.observe(sectionUser);
+
 // Event listener to add function to existing HTML DOM element
 
 document.getElementById("search").addEventListener("click", performAction);
