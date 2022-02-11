@@ -448,3 +448,31 @@ const updateUI = async (inde) => {
     console.log("error", error);
   }
 };
+
+const checkpass = function () {
+  if (
+    document.getElementById("password").value ===
+    document.getElementById("confirm-password").value
+  ) {
+    // document.getElementById("confirm-password").style.background = "green";
+    // document
+    //   .getElementById("confirm-password")
+    //   .setAttribute("confirm-password", "1");
+    document
+      .getElementById("confirm-password")
+      .style.setProperty(
+        "--box-shadow",
+        "0 0 0 0.8rem rgba(18, 241, 10, 0.63)"
+      );
+    // document.getElementById("message").innerHTML = "matching";
+  } else {
+    document
+      .getElementById("confirm-password")
+      .style.setProperty(
+        "--box-shadow",
+        "0 0 0 0.8rem rgba(218, 19, 19, 0.877)"
+      );
+    // document.getElementById("confirm-password").style.background = "red";
+    // document.getElementById("message").innerHTML = "not matching";
+  }
+};
