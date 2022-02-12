@@ -65,17 +65,23 @@ let picast = Array.from(document.getElementsByClassName("designer-name"));
 let designName = Array.from(document.getElementsByClassName("design-name"));
 
 /* Function called by event listener */
-function performAction(e) {
+function performAction(event) {
   const newTerm = document.getElementById("term").value;
   const newSort = document.getElementById("sort-select").value;
   const newProduct = document.getElementById("product-select").value;
   const newColor = document.getElementById("color-select").value;
   const newStyle = document.getElementById("style-select").value;
+  const newEvent = event.currentTarget.textContent;
   console.log(newTerm);
   console.log(newSort);
   console.log(newProduct);
   console.log(newColor);
   console.log(newStyle);
+  console.log(newEvent);
+
+  console.log(event.target);
+  console.log(event.target.value);
+  console.log(event.currentTarget.textContent);
 
   getTerm(
     baseURL,
@@ -87,12 +93,16 @@ function performAction(e) {
     APIcolor,
     newColor,
     APIstyle,
-    newStyle
+    newStyle,
+    newEvent
   ).then(function (data) {
     // Add data
     // for (const result of data.page_results) {
     // data.page_results.forEach((result) => {
     // let ind = data.page_results.indexOf(this);
+
+    console.log(data.query_hit_count.total_listings);
+
     for (let step = 0; step < data.total_page_results; step++) {
       console.log(newTerm);
       console.log(newSort);
@@ -137,7 +147,8 @@ const getTerm = async (
   color,
   newColor,
   style,
-  newStyle
+  newStyle,
+  newEvent
 ) => {
   console.log(sort);
   console.log(newSort);
@@ -145,6 +156,7 @@ const getTerm = async (
   console.log(term);
   console.log(newColor);
   console.log(newStyle);
+  console.log(newEvent);
 
   // console.log(res.url);
   // if (newSort === "newest") {
@@ -156,30 +168,51 @@ const getTerm = async (
   // }
   // console.log(res.url);
   // console.log(typeof res.url);
-
-  let res = await fetch(
+  let strq =
     baseURL +
-      term +
-      sort +
-      newSort +
-      product +
-      newProduct +
-      color +
-      newColor +
-      style +
-      newStyle
-  );
-  if (newColor === "all colors" && newStyle !== "all styles") {
-    res = await fetch(
-      baseURL + term + sort + newSort + product + newProduct + style + newStyle
-    );
-  } else if (newStyle === "all styles" && newColor !== "all colors") {
-    res = await fetch(
-      baseURL + term + sort + newSort + product + newProduct + color + newColor
-    );
-  } else if (newColor === "all colors" && newStyle === "all styles") {
-    res = await fetch(baseURL + term + sort + newSort + product + newProduct);
+    term +
+    sort +
+    newSort +
+    product +
+    newProduct +
+    color +
+    newColor +
+    style +
+    newStyle;
+  console.log(strq);
+
+  let url = new URL(strq);
+  console.log(url.search);
+  let search_params = url.searchParams;
+
+  if (newColor === "all colors") {
+    search_params.delete("color");
   }
+  if (newStyle === "all styles") {
+    search_params.delete("style");
+  }
+
+  search_params = search_params.toString().slice(6);
+  // console.log(search_params.toString());
+  // url.search = search_params.toString();
+  // console.log(res.url);
+
+  let strurl = baseURL + search_params.toString();
+  console.log(strurl);
+
+  let res = await fetch(strurl);
+  console.log(res.url);
+  // if (newColor === "all colors" && newStyle !== "all styles") {
+  //   res = await fetch(
+  //     baseURL + term + sort + newSort + product + newProduct + style + newStyle
+  //   );
+  // } else if (newStyle === "all styles" && newColor !== "all colors") {
+  //   res = await fetch(
+  //     baseURL + term + sort + newSort + product + newProduct + color + newColor
+  //   );
+  // } else if (newColor === "all colors" && newStyle === "all styles") {
+  //   res = await fetch(baseURL + term + sort + newSort + product + newProduct);
+  // }
   console.log(res.url);
 
   try {
@@ -329,6 +362,8 @@ getDefault(baseURL).then(function (data) {
   // data.page_results.forEach((result) => {
   // let ind = data.page_results.indexOf(this);
   console.log(data.total_page_results);
+  console.log(data.query_hit_count.total_listings);
+
   for (let step = 0; step < data.total_page_results; step++) {
     postData("/addData", {
       image: data.page_results[step].thumbnail,
