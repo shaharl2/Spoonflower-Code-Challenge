@@ -1,45 +1,15 @@
-// const baseURL =
-//   "https://pythias.spoonflower.com/search/v1/designs?page_size=12&terms=";
 const baseURL = "https://pythias.spoonflower.com/search/v1/designs?terms=";
 const APIsort = "&sort=";
 const APIproduct = "&product=";
 const APIcolor = "&color=";
 const APIstyle = "&style=";
+// array to hold the design cards
+const designsArray = [];
 
-const designs = document.querySelectorAll("article");
-// ******************************************
-// converting the NodeList to an array
-// ******************************************
-const designsArray = Array.from(designs);
-const designsContainer = document.querySelector("section.container");
+// the designs will be dynamically appended to the container
+const designsContainer = document.querySelector(".container");
 
-//sticky navigation
-
-const sectionUser = document.querySelector(".user-box");
-
-const obs = new IntersectionObserver(
-  function (entries) {
-    const ent = entries[0];
-    console.log(ent);
-
-    if (ent.isIntersecting === false) {
-      document.body.classList.add("sticky");
-    }
-
-    if (ent.isIntersecting === true) {
-      document.body.classList.remove("sticky");
-    }
-  },
-  {
-    // In the viewport
-    root: null,
-    threshold: 0,
-    // rootMargin: "-80px",
-  }
-);
-obs.observe(sectionUser);
-
-// Event listener to add function to existing HTML DOM element
+// Event listeners to add function to existing HTML DOM element
 
 document.getElementById("search").addEventListener("click", performAction);
 document
@@ -55,16 +25,15 @@ document
   .getElementById("style-select")
   .addEventListener("change", performAction);
 
-document
-  .getElementById("style-select")
-  .addEventListener("change", performAction);
+//array to store the design images src
+let designPics = [];
+//array to store the designers names
+let designers = [];
+//array to store the design name
+let designName = [];
 
-// const counter = 0;
-let picas = Array.from(document.getElementsByClassName("design-pic"));
-let picast = Array.from(document.getElementsByClassName("designer-name"));
-let designName = Array.from(document.getElementsByClassName("design-name"));
+// Function called by event listeners
 
-/* Function called by event listener */
 function performAction(event) {
   const newTerm = document.getElementById("term").value;
   const newSort = document.getElementById("sort-select").value;
@@ -72,18 +41,10 @@ function performAction(event) {
   const newColor = document.getElementById("color-select").value;
   const newStyle = document.getElementById("style-select").value;
   const newEvent = event.currentTarget.textContent;
-  console.log(newTerm);
-  console.log(newSort);
-  console.log(newProduct);
-  console.log(newColor);
-  console.log(newStyle);
-  console.log(newEvent);
 
-  console.log(event.target);
-  console.log(event.target.value);
-  console.log(event.currentTarget.textContent);
+  // Function to GET Web API Data
 
-  getTerm(
+  getData(
     baseURL,
     newTerm,
     APIsort,
@@ -96,20 +57,10 @@ function performAction(event) {
     newStyle,
     newEvent
   ).then(function (data) {
-    // Add data
-    // for (const result of data.page_results) {
-    // data.page_results.forEach((result) => {
-    // let ind = data.page_results.indexOf(this);
-
     console.log(data.query_hit_count.total_listings);
 
     for (let step = 0; step < data.total_page_results; step++) {
-      console.log(newTerm);
-      console.log(newSort);
-      console.log(newProduct);
-      console.log(newColor);
-      console.log(newStyle);
-
+      // Add data
       postData("/addData", {
         image: data.page_results[step].thumbnail,
         id: data.page_results[step].designId,
@@ -121,23 +72,17 @@ function performAction(event) {
         color: newColor,
         style: newStyle,
       });
-      // }
-      //  updateUI();
     }
-    // updateUI(data);
-    console.log(data.page_results);
-    // console.log(ind);
-    // });
-    // updateUI();
   });
-  picas = Array.from(document.getElementsByClassName("design-pic"));
-  picast = Array.from(document.getElementsByClassName("designer-name"));
+  //store the designs images, the designer names and design names in arrays
+  designPics = Array.from(document.getElementsByClassName("design-pic"));
+  designers = Array.from(document.getElementsByClassName("designer-name"));
   designName = Array.from(document.getElementsByClassName("design-name"));
 }
 
 /* Function to GET Web API Data*/
 
-const getTerm = async (
+const getData = async (
   baseURL,
   term,
   sort,
@@ -147,28 +92,10 @@ const getTerm = async (
   color,
   newColor,
   style,
-  newStyle,
-  newEvent
+  newStyle
 ) => {
-  console.log(sort);
-  console.log(newSort);
-  console.log(product);
-  console.log(term);
-  console.log(newColor);
-  console.log(newStyle);
-  console.log(newEvent);
-
-  // console.log(res.url);
-  // if (newSort === "newest") {
-  //   const str = `${res.url.replace("&terms=", "")}`;
-  //   res.url =
-  //     "https://pythias.spoonflower.com/search/v1/designs?page_size=12&sort=newest&product=Fabric";
-  //   console.log(res.url);
-  //   console.log(str);
-  // }
-  // console.log(res.url);
-  // console.log(typeof res.url);
-  let strq =
+  //set a string with arguments to easily edit the URL query
+  let queryURL =
     baseURL +
     term +
     sort +
@@ -179,9 +106,8 @@ const getTerm = async (
     newColor +
     style +
     newStyle;
-  console.log(strq);
-
-  let url = new URL(strq);
+  //with the searchParams property I can access the arguments and remove, add or change them
+  let url = new URL(queryURL);
   console.log(url.search);
   let search_params = url.searchParams;
 
@@ -193,27 +119,11 @@ const getTerm = async (
   }
 
   search_params = search_params.toString().slice(6);
-  // console.log(search_params.toString());
-  // url.search = search_params.toString();
-  // console.log(res.url);
+  // a string to store the edited URL query
+  let queryEdited = baseURL + search_params.toString();
+  console.log(queryEdited);
 
-  let strurl = baseURL + search_params.toString();
-  console.log(strurl);
-
-  let res = await fetch(strurl);
-  console.log(res.url);
-  // if (newColor === "all colors" && newStyle !== "all styles") {
-  //   res = await fetch(
-  //     baseURL + term + sort + newSort + product + newProduct + style + newStyle
-  //   );
-  // } else if (newStyle === "all styles" && newColor !== "all colors") {
-  //   res = await fetch(
-  //     baseURL + term + sort + newSort + product + newProduct + color + newColor
-  //   );
-  // } else if (newColor === "all colors" && newStyle === "all styles") {
-  //   res = await fetch(baseURL + term + sort + newSort + product + newProduct);
-  // }
-  console.log(res.url);
+  let res = await fetch(queryEdited);
 
   try {
     const data = await res.json();
@@ -223,16 +133,6 @@ const getTerm = async (
     console.log(color);
     console.log(style);
 
-    // const pica = Array.from(document.getElementsByClassName("design-pic"));
-    // console.log(pica);
-    // pica.forEach((imag) => {
-    // const pica = Array.from(document.getElementsByClassName("design-pic"));
-    // console.log(pica);
-    // pica.forEach((imag) => {
-    // pica[0].src = `https://garden.spoonflower.com/c/${data.page_results[0].designId}/p/f/m/${data.page_results[0].thumbnail}`;
-    // pica[1].src = `https://garden.spoonflower.com/c/${data.page_results[1].designId}/p/f/m/${data.page_results[1].thumbnail}`;
-    // pica[2].src = `https://garden.spoonflower.com/c/${data.page_results[2].designId}/p/f/m/${data.page_results[2].thumbnail}`;
-
     return data;
   } catch (error) {
     console.log("error", error);
@@ -240,113 +140,20 @@ const getTerm = async (
   }
 };
 
+// ************************************************************************************
+// declaring a function to set the page the user sees first, before generating a search
+// ************************************************************************************
+
 const getDefault = async (baseURL) => {
   const res = await fetch(baseURL);
   try {
     const data = await res.json();
     console.log(data.page_results);
-
-    // const pica = Array.from(document.getElementsByClassName("design-pic"));
-    // console.log(pica);
-    // pica.forEach((imag) => {
-    // const pica = Array.from(document.getElementsByClassName("design-pic"));
-    // console.log(pica);
-    // pica.forEach((imag) => {
-    // pica[0].src = `https://garden.spoonflower.com/c/${data.page_results[0].designId}/p/f/m/${data.page_results[0].thumbnail}`;
-    // pica[1].src = `https://garden.spoonflower.com/c/${data.page_results[1].designId}/p/f/m/${data.page_results[1].thumbnail}`;
-    // pica[2].src = `https://garden.spoonflower.com/c/${data.page_results[2].designId}/p/f/m/${data.page_results[2].thumbnail}`;
-
-    for (let i = 0; i < data.page_results.length; i++) {
-      // for (let i = 0; i < data.total_page_results; i++) { ??????
-
-      // *************************************
-      // storing the diffrent section elements
-      // *************************************
-
-      const newDesign = document.createElement("article");
-      const newDiv = document.createElement("div");
-      const newDiv2 = document.createElement("div");
-      const newImg = document.createElement("img");
-      const newDiv3 = document.createElement("div");
-      const newSpan = document.createElement("span");
-      const newSpan2 = document.createElement("span");
-      const newAnch = document.createElement("a");
-      const newPar = document.createElement("p");
-      const newAnch2 = document.createElement("a");
-      const newAnch3 = document.createElement("a");
-
-      // *************************************
-      // creating id, class, data-* attributes
-      // there are laready 3 sections built in HTML
-      // and therefore I start build from 4
-      // *************************************
-
-      newDiv.className = "design-box";
-      newDiv2.className = "design-image";
-      newImg.className = "design-pic";
-      newImg.setAttribute("height", "294");
-      newImg.setAttribute("width", "294");
-      newImg.setAttribute("src", "");
-      newImg.setAttribute("alt", "");
-      newDiv3.className = "design-text";
-      newSpan.setAttribute("itemprop", "name");
-      newSpan2.className = "";
-      newSpan2.setAttribute("itemprop", "productID");
-      newAnch.setAttribute("href", "");
-      newAnch.className = "design-name";
-      newAnch.setAttribute("title", "");
-      newAnch.setAttribute("itemprop", "");
-      newPar.className = "designer-box";
-      newPar.textContent = "Designer:";
-      newAnch2.setAttribute("href", "");
-      newAnch2.className = "designer-name";
-      newAnch2.setAttribute("title", "");
-      newAnch2.setAttribute("itemprop", "");
-      newAnch3.className = "";
-      newAnch3.setAttribute("href", "");
-      newAnch3.textContent = "back home";
-
-      // *************************************
-      // creating the text content
-      // *************************************
-      // newHead.textContent = `Section ${4 + i}`;
-      // newPar.textContent =
-      //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.";
-      // newPar2.textContent =
-      //   "Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.";
-
-      // *************************************
-      // appending the elements in the section
-      // *************************************
-
-      newDiv.appendChild(newDiv2);
-      newDiv2.appendChild(newImg);
-      newDiv.appendChild(newDiv3);
-      newDiv3.appendChild(newSpan);
-      newDiv3.appendChild(newSpan2);
-      newDiv3.appendChild(newAnch);
-      newDiv3.appendChild(newPar);
-      newPar.appendChild(newAnch2);
-      newDiv.appendChild(newAnch3);
-
-      // ******************************************
-      // adding the new section to my section array
-      // ******************************************
-
-      designsArray.push(newDiv);
-    }
-
-    // ******************************************
-    // appending the new sections to main
-    // starting from the 3rd element because
-    // 3 elements are already built in advance
-    // ******************************************
-
-    for (design of designsArray) {
-      designsContainer.appendChild(design);
-    }
-    picas = Array.from(document.getElementsByClassName("design-pic"));
-    picast = Array.from(document.getElementsByClassName("designer-name"));
+    //calling the function to dynamically built the HTML elements to store the designs
+    designElements(data.page_results.length);
+    //after we built the elements, we can store the designs images, the designer names and design names in arrays
+    designPics = Array.from(document.getElementsByClassName("design-pic"));
+    designers = Array.from(document.getElementsByClassName("designer-name"));
     designName = Array.from(document.getElementsByClassName("design-name"));
 
     return data;
@@ -357,30 +164,18 @@ const getDefault = async (baseURL) => {
 };
 
 getDefault(baseURL).then(function (data) {
-  // Add data
-  // for (const result of data.page_results) {
-  // data.page_results.forEach((result) => {
-  // let ind = data.page_results.indexOf(this);
   console.log(data.total_page_results);
   console.log(data.query_hit_count.total_listings);
-
+  //add data to the object from the API or each result
   for (let step = 0; step < data.total_page_results; step++) {
     postData("/addData", {
       image: data.page_results[step].thumbnail,
       id: data.page_results[step].designId,
       name: data.page_results[step].name,
       designer: data.page_results[step].user.screenName,
-      // term: newTerm,
-      // sort: bestSelling,
     });
-    // }
-    //  updateUI();
   }
-  // updateUI(data);
   console.log(data.page_results);
-  // console.log(ind);
-  // });
-  // updateUI();
 });
 
 /* Function to POST data */
@@ -398,28 +193,15 @@ const postData = async (url = "", data = {}) => {
 
   try {
     const newData = await response.json();
-    console.log(newData);
-    // const picas = Array.from(document.getElementsByClassName("design-pic"));
-    // let picas = Array.from(document.getElementsByClassName("design-pic"));
-    // let picast = Array.from(document.getElementsByClassName("designer-name"));
-    // let designName = Array.from(document.getElementsByClassName("design-name"));
-    console.log(picas);
-    console.log(picas.length);
-    // const firstElement = picas.shift();
-    // console.log(firstElement);
-    // console.log(picas.shift());
+    //handling direrrent image src for fabric, wallpaper and home decor
     if (newData.product === "Wallpaper" || newData.product === "Living_Decor") {
-      picas.shift().src = `https://garden.spoonflower.com/c/${newData.id}/i/m/${newData.image}`;
+      designPics.shift().src = `https://garden.spoonflower.com/c/${newData.id}/i/m/${newData.image}`;
     } else
-      picas.shift().src = `https://garden.spoonflower.com/c/${newData.id}/p/f/m/${newData.image}`;
+      designPics.shift().src = `https://garden.spoonflower.com/c/${newData.id}/p/f/m/${newData.image}`;
 
-    picast.shift().innerHTML = ` ${newData.designer}`;
+    designers.shift().innerHTML = `${newData.designer}`;
     designName.shift().innerHTML = newData.name;
-    // updateUI(newData);
-    // let counter = 0;
-    // console.log(counter);
-    // counter++;
-    // updateUI(newData, counter);
+
     return newData;
   } catch (error) {
     console.log("error", error);
@@ -427,79 +209,36 @@ const postData = async (url = "", data = {}) => {
   console.log(data);
 };
 
-/* Function to GET Project Data and dynamically update the UI*/
-// const pica = Array.from(document.getElementsByClassName("design-pic"));
-// console.log(pica);
-// pica.forEach((imag) => {
-const updateUI = async (inde) => {
+const updateUR = async (event) => {
   const request = await fetch("/all");
   try {
     const allData = await request.json();
+    console.log(allData.total_page_results);
     console.log(allData);
-    console.log(inde);
-    // console.log(inde.page_results.indexOf(allData));
-    // document.getElementById("date").innerHTML = allData.date;
-    // document.getElementById("temp").innerHTML =
-    //   Math.round(allData.temperature) + " degrees";
-    // document.getElementById("content").innerHTML = allData.feelings;
-    // https://garden.spoonflower.com/c/6743135/p/f/m/nE8uB1Ky6nHNGK68-VQL4vozc2iSJqlUsSBXjJKYp6ZeozyVC58yJqogddk/Rustic%20Fall%20-%20Forest%20animals%20-%20les%20animaux%20de%20la%20f%C3%B4ret.jpg
-    // https://garden.spoonflower.com/c/12215564/i/m/NgcB-udsPjnSkDuRcAZ0GX2qrYz7m4rZr4os7PcJ6h8ThoEfjuN500La8AWk5pk/Guitar%20Christmas%20Tree.jpg
-    const pica = Array.from(document.getElementsByClassName("design-pic"));
-    console.log(pica);
-    // pica.forEach((imag) => {
-    // const pica = Array.from(document.getElementsByClassName("design-pic"));
-    // console.log(pica);
-    // pica.forEach((imag) => {
-    // pica[0].src = `https://garden.spoonflower.com/c/${inde.page_results[0].designId}/p/f/m/${inde.page_results[0].thumbnail}`;
-    // pica[1].src = `https://garden.spoonflower.com/c/${inde.page_results[1].designId}/p/f/m/${inde.page_results[1].thumbnail}`;
-    // pica[2].src = `https://garden.spoonflower.com/c/${inde.page_results[2].designId}/p/f/m/${inde.page_results[2].thumbnail}`;
-    // pica[0].src = `https://garden.spoonflower.com/c/${inde.page_results[0].designId}/p/f/m/${inde.page_results[0].thumbnail}`;
-    // pica[1].src = `https://garden.spoonflower.com/c/${inde.page_results[1].designId}/p/f/m/${inde.page_results[1].thumbnail}`;
-    // pica[2].src = `https://garden.spoonflower.com/c/${inde.page_results[2].designId}/p/f/m/${inde.page_results[2].thumbnail}`;
-    // });
-    console.log(counter);
-    // for (let indx in pica) {
-    pica[
-      counter
-    ].src = `https://garden.spoonflower.com/c/${inde.id}/p/f/m/${inde.image}`;
-    // console.log(indx);
-    counter++;
-
-    // }
-    // for (let indx in inde.page_results) {
-    //   pica[
-    //     indx
-    //   ].src = `https://garden.spoonflower.com/c/${inde.page_results[indx].designId}/p/f/m/${inde.page_results[indx].thumbnail}`;
-    //   console.log(indx);
-    // }
-    // });
-    // console.log(document.getElementsByClassName("design-pic")[0]);
-    // console.log(pic);
-    // console.log(pic.src);
-    // document.getElementById(
-    //   "photo"
-    // ).src = `https://garden.spoonflower.com/c/${allData.id}/p/f/m/${allData.image}`;
+    console.log(allData.id);
   } catch (error) {
     console.log("error", error);
   }
 };
 
-const checkpass = function () {
+// *********************************
+//a function to be called by an input
+// event. this function checks the
+// re-entered password is similar to
+//the original password. red shadow if
+//not, green shadow if yes.
+// *********************************
+const checkpass = () => {
   if (
     document.getElementById("password").value ===
     document.getElementById("confirm-password").value
   ) {
-    // document.getElementById("confirm-password").style.background = "green";
-    // document
-    //   .getElementById("confirm-password")
-    //   .setAttribute("confirm-password", "1");
     document
       .getElementById("confirm-password")
       .style.setProperty(
         "--box-shadow",
         "0 0 0 0.8rem rgba(18, 241, 10, 0.63)"
       );
-    // document.getElementById("message").innerHTML = "matching";
   } else {
     document
       .getElementById("confirm-password")
@@ -507,7 +246,113 @@ const checkpass = function () {
         "--box-shadow",
         "0 0 0 0.8rem rgba(218, 19, 19, 0.877)"
       );
-    // document.getElementById("confirm-password").style.background = "red";
-    // document.getElementById("message").innerHTML = "not matching";
   }
 };
+
+// *******************************************************************
+// a function to dynamically build HTML elements to hold
+// the desings cards and append these elements to the container
+// *******************************************************************
+
+const designElements = (pageSize) => {
+  for (let i = 0; i < pageSize; i++) {
+    // for (let i = 0; i < data.total_page_results; i++) { ??????
+
+    // *************************************
+    // storing the diffrent HTML elements
+    // *************************************
+
+    const newDiv = document.createElement("div");
+    const newDiv2 = document.createElement("div");
+    const newImg = document.createElement("img");
+    const newDiv3 = document.createElement("div");
+    const newSpan = document.createElement("span");
+    const newSpan2 = document.createElement("span");
+    const newAnch = document.createElement("a");
+    const newPar = document.createElement("p");
+    const newAnch2 = document.createElement("a");
+    const newAnch3 = document.createElement("a");
+
+    // *************************************
+    // creating attributes
+    // *************************************
+
+    newDiv.className = "design-box";
+    newDiv2.className = "design-image";
+    newImg.className = "design-pic";
+    newImg.setAttribute("height", "294");
+    newImg.setAttribute("width", "294");
+    newImg.setAttribute("src", "");
+    newImg.setAttribute("alt", "");
+    newDiv3.className = "design-text";
+    newSpan.setAttribute("itemprop", "name");
+    newSpan2.className = "";
+    newSpan2.setAttribute("itemprop", "productID");
+    newAnch.setAttribute("href", "");
+    newAnch.className = "design-name";
+    newAnch.setAttribute("title", "");
+    newAnch.setAttribute("itemprop", "");
+    newPar.className = "designer-box";
+    newPar.textContent = "Designer:";
+    newAnch2.setAttribute("href", "");
+    newAnch2.className = "designer-name";
+    newAnch2.setAttribute("title", "");
+    newAnch2.setAttribute("itemprop", "");
+    newAnch3.className = "";
+    newAnch3.setAttribute("href", "");
+    newAnch3.textContent = "back home";
+
+    // *****************************************
+    // appending the elements in the design card
+    // *****************************************
+
+    newDiv.appendChild(newDiv2);
+    newDiv2.appendChild(newImg);
+    newDiv.appendChild(newDiv3);
+    newDiv3.appendChild(newSpan);
+    newDiv3.appendChild(newSpan2);
+    newDiv3.appendChild(newAnch);
+    newDiv3.appendChild(newPar);
+    newPar.appendChild(newAnch2);
+    newDiv.appendChild(newAnch3);
+
+    // ***********************************************
+    // adding the new design card to the designs array
+    // ***********************************************
+
+    designsArray.push(newDiv);
+  }
+
+  // ******************************************
+  // appending the new designs to the container
+  // ******************************************
+
+  for (design of designsArray) {
+    designsContainer.appendChild(design);
+  }
+};
+
+//+++++++++++++++++++++++++++++++++
+//sticky navigation bar
+//+++++++++++++++++++++++++++++++++
+const sectionUser = document.querySelector(".user-box");
+
+const obs = new IntersectionObserver(
+  function (entries) {
+    const ent = entries[0];
+    //adding and removing an acticve class
+    if (ent.isIntersecting === false) {
+      document.body.classList.add("sticky");
+    }
+    if (ent.isIntersecting === true) {
+      document.body.classList.remove("sticky");
+    }
+  },
+  {
+    // In the viewport
+    root: null,
+    threshold: 0,
+    // rootMargin: "-80px",
+  }
+);
+obs.observe(sectionUser);

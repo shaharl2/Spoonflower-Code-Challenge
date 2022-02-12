@@ -4,58 +4,37 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spoonflower Marketplace</title>
-
-    <!-- <link rel="stylesheet" href="style.css" /> -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="icon" href="spoonflower-logo.png" />
+    <link rel="stylesheet" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <link rel="stylesheet" href="style.css" />
-
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"
     ></script>
     <script
-      nomodule=""
-      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"
-    ></script>
-
-    <script
       src="https://kit.fontawesome.com/afd6aa68df.js"
       crossorigin="anonymous"
     ></script>
+    <title>Spoonflower &mdash; Marketplace</title>
   </head>
   <body>
     <header class="header">
-      <!-- <a href="#">
-        <img class="logo" alt="Spoonflower logo" src="spoonflower-logo.png" />
-      </a> -->
       <a href="#">
         <img class="logo" alt="Spoonflower logo" src="spoonflower_logo.png" />
       </a>
-
       <nav class="main-nav">
         <ul class="main-nav-list">
           <li><a class="main-nav-link" href="#how">How it Works</a></li>
-          <li><a class="main-nav-link" href="#cta">Join</a></li>
+          <li><a class="main-nav-link" href="#join">Join</a></li>
           <li>
             <a class="main-nav-link" href="#testimonials">Work with Us</a>
           </li>
-          <!-- <li><a class="main-nav-link" href="#pricing">Pricing</a></li> -->
           <li>
             <a
-              class="main-nav-link nav-cta"
+              class="main-nav-link nav-join"
               href="https://www.spoonflower.com/login"
               target="_blank"
               >Log in</a
@@ -64,607 +43,380 @@
         </ul>
       </nav>
     </header>
-
-    <section class="user-box">
-      <div class="search-box">
-        Search
-        <div>
-          <button class="btn-search" id="search" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-          <!-- <button class="btn-search" id="search" type="submit">
-          <i class="fas fa-search"></i>
-        </button> -->
-          <!-- <label for="term">What </label> -->
-          <input
-            type="text"
-            id="term"
-            class="input-search"
-            placeholder="Type to Search..."
-          />
-        </div>
-      </div>
-
-      <form>
-        <!-- <div class="search-box"> -->
-        <!-- <button class="btn-search" id="search" type="submit">
-            <i class="fas fa-search"></i>
-          </button> -->
-        <!-- <label for="term">What</label>
-          <input
-            type="text"
-            id="term"
-            class="input-search"
-            placeholder="Type to Search..."
-          />
-        </div> -->
-
-        <!-- <label for="term">What is your design?</label>
-        <input type="text" id="term" placeholder="search for design" /> -->
-
-        <div class="selectdiv">
-          Products
-          <select name="products" id="product-select">
-            <!-- <option value="">--Please choose an option--</option> -->
-            <!-- <option selected>Products</option> -->
-            <option value="Fabric">Fabric</option>
-            <option value="Wallpaper">Wallpaper</option>
-            <option value="Living_Decor">Home Decor</option>
-          </select>
-        </div>
-        <div class="selectdiv">
-          Sort by
-          <select name="sort" id="sort-select">
-            <!-- <option value="">--Please choose an option--</option> -->
-            <option value="bestSelling">Best Selling</option>
-            <option value="newest">Newest</option>
-            <option value="mostFavorited">Most Favorited</option>
-            <option value="mostRelevant">Most Relevant</option>
-          </select>
-        </div>
-        <div class="selectdiv">
-          Sort by
-          <select name="color" id="color-select">
-            <option value="all colors">All Colors</option>
-            <option value="black">Black</option>
-            <option value="brown">Brown</option>
-            <option value="grey">Grey</option>
-            <option value="white">White</option>
-            <option value="yellow">Yellow</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
-            <option value="purple">Purple</option>
-            <option value="pink">Pink</option>
-            <option value="red">Red</option>
-            <option value="orange">Orange</option>
-          </select>
-        </div>
-
-        <div class="selectdiv">
-          Style
-          <select name="style" id="style-select">
-            <option value="all styles">All Styles</option>
-            <option value="Modern">Modern</option>
-            <option value="Traditional">Traditional</option>
-            <option value="Historical">Historical</option>
-            <option value="Nautical">Nautical</option>
-            <option value="Artistic">Artistic</option>
-            <option value="Shapes">Shapes</option>
-            <option value="Texture">Texture</option>
-            <option value="Geography">Geography</option>
-            <option value="Worldly">Worldly</option>
-          </select>
-        </div>
-      </form>
-      <!-- <button id="search" type="submit">Find Designs</button> -->
-
-      <!-- <div class="search-box">
-        What?
-        <div>
-          <button class="btn-search" id="search" type="submit">
-            <i class="fas fa-search"></i>
-          </button> -->
-      <!-- <button class="btn-search" id="search" type="submit">
-          <i class="fas fa-search"></i>
-        </button> -->
-      <!-- <label for="term">What </label> -->
-      <!-- <input
-            type="text"
-            id="term"
-            class="input-search"
-            placeholder="Type to Search..."
-          />
-        </div>
-      </div> -->
-    </section>
-
-    <section class="container">
-      <!-- <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height=294"" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div>
-      <div class="design-box">
-        <div class="design-image">
-          <img height="294" width="294" class="design-pic" src="" alt="" />
-        </div>
-        <div class="design-text">
-          <span itemprop="name"></span>
-          <span class="" itemprop="productID"></span>
-          <a href="" class="design-name" title="" itemprop=""></a>
-          <p class="designer-box">
-            Designer:<a href="" class="designer-name" title="" itemprop=""></a>
-          </p>
-        </div>
-        <a class="" href="">back home</a>
-      </div> -->
-    </section>
-
-    <section class="section-how" id="how">
-      <div class="content">
-        <span class="subheading">How it works</span>
-        <h2 class="heading-secondary">
-          Spoonflower makes it easy to customize fabric, wallpaper & home decor
-        </h2>
-      </div>
-
-      <div class="content grid grid--2-cols grid--center-v">
-        <!-- STEP 01 -->
-        <div class="step-text-box">
-          <p class="step-number">01</p>
-          <h3 class="heading-tertiary">Select or upload a design</h3>
-          <p class="step-description">
-            Shop from thousands of independent artists or upload your own design
-            or photo.
-          </p>
-        </div>
-        <!-- <div></div> -->
-
-        <!-- <div class="step-img-box">
-          <img
-            src="img/app/app-screen-1.png"
-            class="step-img"
-            alt="iPhone app
-          preferences selection screen"
-          />
-        </div> -->
-
-        <div class="step-img-box">
-          <img
-            src="upload_design.jpg"
-            class="step-img"
-            alt="user uploading a design to spoonflower"
-          />
-        </div>
-
-        <!-- STEP 02 -->
-        <div class="step-img-box">
-          <img
-            src="order_product.jpg"
-            class="step-img"
-            alt="various spoonflower products"
-          />
-        </div>
-        <!-- <div></div> -->
-
-        <div class="step-text-box">
-          <p class="step-number">02</p>
-          <h3 class="heading-tertiary">Order it on any product</h3>
-          <p class="step-description">
-            Order the design on the product of your choice, from fabric to
-            pillows to duvets.
-          </p>
-        </div>
-
-        <!-- STEP 03 -->
-        <div class="step-text-box">
-          <p class="step-number">03</p>
-          <h3 class="heading-tertiary">We print it and ship it</h3>
-          <p class="step-description">
-            We print, sew it in-house and ship it all over the world!
-          </p>
-        </div>
-        <!-- <div></div> -->
-        <div class="step-img-box">
-          <img
-            src="print_design.jpg"
-            class="step-img"
-            alt="iPhone app
-          delivery screen"
-          />
-        </div>
-      </div>
-    </section>
-
-    <section class="section-cta" id="cta">
-      <div class="content">
-        <div class="cta">
-          <div class="cta-text-box">
-            <h2 class="heading-secondary">
-              Create your free account and get started!
-            </h2>
-            <p class="cta-text">
-              Whether you are an artist or a DIY maker, Spoonflower has
-              something for you! Upload your design or have a look at our huge
-              marketplace, with millions of beautiful designs. Choose from our
-              collection of Eco-friendly textiles, Wallpaper, and Home Decor
-              products and get your design shipped to your home!
-            </p>
-
-            <form class="cta-form" name="sign-up" netlify>
-              <div>
-                <label for="full-name">Full Name</label>
-                <input
-                  id="full-name"
-                  type="text"
-                  placeholder="John Smith"
-                  name="full-name"
-                  required
-                />
-              </div>
-
-              <div>
-                <label for="email">Email address</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="me@example.com"
-                  name="email"
-                  required
-                />
-              </div>
-
-              <div>
-                <label for="password">Choose a password </label>
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  onkeyup="checkpass()"
-                  required
-                />
-              </div>
-
-              <div>
-                <label for="confirm-password">Re-enter password </label>
-                <input
-                  id="confirm-password"
-                  type="password"
-                  name="confirm-password"
-                  onkeyup="checkpass()"
-                  required
-                />
-                <!-- <span id="message"></span> -->
-              </div>
-
-              <div>
-                <label for="select-where">Where did you hear from us?</label>
-                <select id="select-where" name="select-where" required>
-                  <option value="">Please choose one option:</option>
-                  <option value="friends">Friends and family</option>
-                  <option value="youtube">YouTube video</option>
-                  <option value="podcast">Podcast</option>
-                  <option value="ad">Facebook ad</option>
-                  <option value="others">Others</option>
-                </select>
-              </div>
-
-              <button class="btn btn--form">Sign up now</button>
-
-              <!-- <input type="checkbox" />
-              <input type="number" /> -->
-            </form>
+    <main>
+      <section class="user-box">
+        <div class="search-box">
+          Search
+          <div>
+            <button class="btn-search" id="search" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+            <input
+              type="text"
+              id="term"
+              class="input-search"
+              placeholder="Type to Search..."
+            />
           </div>
-          <div
-            class="cta-img-box"
-            role="img"
-            aria-label="welcome package"
-          ></div>
         </div>
-      </div>
-    </section>
 
-    <section class="section-testimonials" id="testimonials">
-      <div class="testimonials-container">
-        <span class="subheading">Testimonials</span>
-        <h2 class="heading-secondary">Join our team and our mission</h2>
+        <form>
+          <div class="selectdiv">
+            Products
+            <select name="products" id="product-select">
+              <option value="Fabric">Fabric</option>
+              <option value="Wallpaper">Wallpaper</option>
+              <option value="Living_Decor">Home Decor</option>
+            </select>
+          </div>
+          <div class="selectdiv">
+            Sort by
+            <select name="sort" id="sort-select">
+              <option value="bestSelling">Best Selling</option>
+              <option value="newest">Newest</option>
+              <option value="mostFavorited">Most Favorited</option>
+              <option value="mostRelevant">Most Relevant</option>
+            </select>
+          </div>
+          <div class="selectdiv">
+            Sort by
+            <select name="color" id="color-select">
+              <option value="all colors">All Colors</option>
+              <option value="black">Black</option>
+              <option value="brown">Brown</option>
+              <option value="grey">Grey</option>
+              <option value="white">White</option>
+              <option value="yellow">Yellow</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="purple">Purple</option>
+              <option value="pink">Pink</option>
+              <option value="red">Red</option>
+              <option value="orange">Orange</option>
+            </select>
+          </div>
 
-        <div class="testimonials">
-          <figure class="testimonial">
+          <div class="selectdiv">
+            Style
+            <select name="style" id="style-select">
+              <option value="all styles">All Styles</option>
+              <option value="Modern">Modern</option>
+              <option value="Traditional">Traditional</option>
+              <option value="Historical">Historical</option>
+              <option value="Nautical">Nautical</option>
+              <option value="Artistic">Artistic</option>
+              <option value="Shapes">Shapes</option>
+              <option value="Texture">Texture</option>
+              <option value="Geography">Geography</option>
+              <option value="Worldly">Worldly</option>
+            </select>
+          </div>
+        </form>
+      </section>
+
+      <section class="container"></section>
+
+      <section class="section-how" id="how">
+        <div class="content">
+          <span class="subheading">How it works</span>
+          <h2 class="heading-secondary">
+            Spoonflower makes it easy to customize fabric, wallpaper & home
+            decor
+          </h2>
+        </div>
+
+        <div class="content grid grid--2-cols grid--center-v">
+          <!-- STEP 01 -->
+          <div class="step-text-box">
+            <p class="step-number">01</p>
+            <h3 class="heading-tertiary">Select or upload a design</h3>
+            <p class="step-description">
+              Shop from thousands of independent artists or upload your own
+              design or photo.
+            </p>
+          </div>
+
+          <div class="step-img-box">
             <img
-              class="testimonial-img"
-              alt="Photo of customer Ji-eun M."
-              src="ji-eun.png"
+              src="upload_design.jpg"
+              class="step-img"
+              alt="user uploading a design to spoonflower"
             />
-            <blockquote class="testimonial-text">
-              My favorite thing about working at Spoonflower is that our team
-              here is so diverse. I love meeting people from different
-              backgrounds.
-            </blockquote>
-            <p class="testimonial-name">&mdash; Ji-eun M.</p>
+          </div>
+
+          <!-- STEP 02 -->
+          <div class="step-img-box">
+            <img
+              src="order_product.jpg"
+              class="step-img"
+              alt="various spoonflower products"
+            />
+          </div>
+
+          <div class="step-text-box">
+            <p class="step-number">02</p>
+            <h3 class="heading-tertiary">Order it on any product</h3>
+            <p class="step-description">
+              Order the design on the product of your choice, from fabric to
+              pillows to duvets.
+            </p>
+          </div>
+
+          <!-- STEP 03 -->
+          <div class="step-text-box">
+            <p class="step-number">03</p>
+            <h3 class="heading-tertiary">We print it and ship it</h3>
+            <p class="step-description">
+              We print, sew it in-house and ship it all over the world!
+            </p>
+          </div>
+          <div class="step-img-box">
+            <img
+              src="print_design.jpg"
+              class="step-img"
+              alt="iPhone app
+          delivery screen"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="section-join" id="join">
+        <div class="content">
+          <div class="join">
+            <div class="join-text-box">
+              <h2 class="heading-secondary">
+                Create your free account and get started!
+              </h2>
+              <p class="join-text">
+                Whether you are an artist or a DIY maker, Spoonflower has
+                something for you! Upload your design or have a look at our huge
+                marketplace, with millions of beautiful designs. Choose from our
+                collection of Eco-friendly textiles, Wallpaper, and Home Decor
+                products and get your design shipped to your home!
+              </p>
+
+              <form class="join-form" name="sign-up" netlify>
+                <div>
+                  <label for="full-name">Full Name</label>
+                  <input
+                    id="full-name"
+                    type="text"
+                    placeholder="John Smith"
+                    name="full-name"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label for="email">Email address</label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="me@example.com"
+                    name="email"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label for="password">Choose a password </label>
+                  <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    onkeyup="checkpass()"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label for="confirm-password">Re-enter password </label>
+                  <input
+                    id="confirm-password"
+                    type="password"
+                    name="confirm-password"
+                    onkeyup="checkpass()"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label for="select-where">How did you hear about us?</label>
+                  <select id="select-where" name="select-where" required>
+                    <option value="">Please choose one option:</option>
+                    <option value="friends">Friends and family</option>
+                    <option value="youtube">YouTube video</option>
+                    <option value="podcast">Podcast</option>
+                    <option value="ad">Facebook ad</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+
+                <button class="btn btn--form" id="update">Sign up now</button>
+              </form>
+            </div>
+            <div
+              class="join-img-box"
+              role="img"
+              aria-label="welcome package"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-testimonials" id="testimonials">
+        <div class="testimonials-container">
+          <span class="subheading">Testimonials</span>
+          <h2 class="heading-secondary">Join our team and our mission</h2>
+
+          <div class="testimonials">
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                alt="Photo of customer Ji-eun M."
+                src="ji-eun.png"
+              />
+              <blockquote class="testimonial-text">
+                My favorite thing about working at Spoonflower is that our team
+                here is so diverse. I love meeting people from different
+                backgrounds.
+              </blockquote>
+              <p class="testimonial-name">&mdash; Ji-eun M.</p>
+            </figure>
+
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                alt="Photo of customer Donnie G."
+                src="donnie.png"
+              />
+              <blockquote class="testimonial-text">
+                Spoonflower has afforded me the opportunity to meet and work
+                with an amazing group of creatives, all from different walks of
+                life.
+              </blockquote>
+              <p class="testimonial-name">&mdash; Donnie G.</p>
+            </figure>
+
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                alt="Photo of customer Steve Miller"
+                src="steve.jpg"
+              />
+              <blockquote class="testimonial-text">
+                Inspiration to create literally oozes from the walls, fostering
+                a welcoming environment and ultimately affecting the positive
+                attitudes of the employees.
+              </blockquote>
+              <p class="testimonial-name">&mdash; Steve Miller</p>
+            </figure>
+
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                alt="Photo of customer Hannah Smith"
+                src="hannah.jpg"
+              />
+              <blockquote class="testimonial-text">
+                You'd be hard pressed to find this mixture of creativity and fun
+                working anywhere else! I look forward to going to work everyday
+                and being a part of this awesome team!
+              </blockquote>
+              <p class="testimonial-name">&mdash; Hannah Smith</p>
+            </figure>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <figure class="gallery-item">
+            <img
+              src="work1.jpg"
+              alt="Photo of beautifully
+          arranged food"
+            />
           </figure>
-
-          <figure class="testimonial">
+          <figure class="gallery-item">
             <img
-              class="testimonial-img"
-              alt="Photo of customer Donnie G."
-              src="donnie.png"
+              src="work2.jpg"
+              alt="Photo of beautifully
+          arranged food"
             />
-            <blockquote class="testimonial-text">
-              Spoonflower has afforded me the opportunity to meet and work with
-              an amazing group of creatives, all from different walks of life.
-            </blockquote>
-            <p class="testimonial-name">&mdash; Donnie G.</p>
           </figure>
-
-          <figure class="testimonial">
+          <figure class="gallery-item">
             <img
-              class="testimonial-img"
-              alt="Photo of customer Steve Miller"
-              src="steve.jpg"
+              src="work3.jpg"
+              alt="Photo of beautifully
+          arranged food"
             />
-            <blockquote class="testimonial-text">
-              Inspiration to create literally oozes from the walls, fostering a
-              welcoming environment and ultimately affecting the positive
-              attitudes of the employees.
-            </blockquote>
-            <p class="testimonial-name">&mdash; Steve Miller</p>
           </figure>
-
-          <figure class="testimonial">
+          <figure class="gallery-item">
             <img
-              class="testimonial-img"
-              alt="Photo of customer Hannah Smith"
-              src="hannah.jpg"
+              src="work4.jpg"
+              alt="Photo of beautifully
+          arranged food"
             />
-            <blockquote class="testimonial-text">
-              You'd be hard pressed to find this mixture of creativity and fun
-              working anywhere else! I look forward to going to work everyday
-              and being a part of this awesome team!
-            </blockquote>
-            <p class="testimonial-name">&mdash; Hannah Smith</p>
+          </figure>
+          <figure class="gallery-item">
+            <img
+              src="work5.jpg"
+              alt="Photo of beautifully
+          arranged food"
+            />
+          </figure>
+          <figure class="gallery-item">
+            <img
+              src="work6.jpg"
+              alt="Photo of beautifully
+          arranged food"
+            />
+          </figure>
+          <figure class="gallery-item">
+            <img
+              src="work7.jpg"
+              alt="Photo of beautifully
+          arranged food"
+            />
+          </figure>
+          <figure class="gallery-item">
+            <img
+              src="work8.jpg"
+              alt="Photo of beautifully
+          arranged food"
+            />
+          </figure>
+          <figure class="gallery-item">
+            <img
+              src="work9.jpg"
+              alt="Photo of beautifully
+          arranged food"
+            />
+          </figure>
+          <figure class="gallery-item">
+            <img
+              src="work10.jpg"
+              alt="Photo of beautifully
+          arranged food"
+            />
+          </figure>
+          <figure class="gallery-item">
+            <img
+              src="work11.jpg"
+              alt="Photo of beautifully
+          arranged food"
+            />
+          </figure>
+          <figure class="gallery-item">
+            <img
+              src="work12.jpg"
+              alt="Photo of beautifully
+          arranged food"
+            />
           </figure>
         </div>
-      </div>
-
-      <div class="gallery">
-        <figure class="gallery-item">
-          <img
-            src="work1.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-          <!-- <figcaption>Caption</figcaption> -->
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work2.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work3.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work4.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work5.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work6.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work7.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work8.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work9.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work10.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work11.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-        <figure class="gallery-item">
-          <img
-            src="work12.jpg"
-            alt="Photo of beautifully
-          arranged food"
-          />
-        </figure>
-      </div>
-    </section>
-
+      </section>
+    </main>
     <footer class="footer">
       <div class="content grid grid--footer">
         <div class="logo-col">
@@ -752,7 +504,7 @@
         <nav class="nav-col">
           <p class="footer-heading">Account</p>
           <ul class="footer-nav">
-            <li><a class="footer-link" href="#cta">Create account</a></li>
+            <li><a class="footer-link" href="#join">Create account</a></li>
             <li>
               <a
                 class="footer-link"

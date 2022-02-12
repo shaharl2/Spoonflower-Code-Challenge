@@ -191,16 +191,16 @@ ul {
   color: teal;
 }
 
-.main-nav-link.nav-cta:link,
-.main-nav-link.nav-cta:visited {
+.main-nav-link.nav-join:link,
+.main-nav-link.nav-join:visited {
   padding: 1.2rem 2.4rem;
   border-radius: 9px;
   color: teal;
   background-color: #9cc5ca;
 }
 
-.main-nav-link.nav-cta:hover,
-.main-nav-link.nav-cta:active {
+.main-nav-link.nav-join:hover,
+.main-nav-link.nav-join:active {
   background-color: #8cb1b6;
 }
 
@@ -500,10 +500,10 @@ body {
 }
 
 /**************************/
-/* CTA SECTION */
+/* join SECTION */
 /**************************/
 
-.section-cta {
+.section-join {
   /* top / right / bottom / left */
   /* padding: 9.6rem 0 12.8rem 0; */
 
@@ -511,7 +511,7 @@ body {
   padding: 4.8rem 0 12.8rem;
 }
 
-.cta {
+.join {
   display: grid;
   /* 2/3 = 66.6% + 1/3 = 33.3% */
   grid-template-columns: 2fr 1fr;
@@ -525,45 +525,45 @@ body {
   overflow: hidden;
 }
 
-.cta-text-box {
+.join-text-box {
   padding: 4.8rem 6.4rem 6.4rem 6.4rem;
   color: #45260a;
 }
 
-.cta .heading-secondary {
+.join .heading-secondary {
   /* color: #45260a; */
   color: inherit;
   margin-bottom: 2.2rem;
 }
 
-.cta-text {
+.join-text {
   font-size: 2.1rem;
   line-height: 1.3;
   margin-bottom: 2.8rem;
 }
 
-.cta-img-box {
+.join-img-box {
   background-image: url("spoonflower-design.jpg");
   background-size: cover;
   background-position: center;
 }
 
-.cta-form {
+.join-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 3.2rem;
   row-gap: 2.4rem;
 }
 
-.cta-form label {
+.join-form label {
   display: block;
   font-size: 2.3rem;
   font-weight: 500;
   margin-bottom: 1.2rem;
 }
 
-.cta-form input,
-.cta-form select {
+.join-form input,
+.join-form select {
   width: 100%;
   padding: 1.2rem;
   font-size: 2rem;
@@ -575,11 +575,11 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.cta-form input::placeholder {
+.join-form input::placeholder {
   color: #aaa;
 }
 
-.cta *:focus {
+.join *:focus {
   outline: none;
   box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
 }
