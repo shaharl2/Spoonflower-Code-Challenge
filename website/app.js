@@ -336,9 +336,10 @@ const designElements = (pageSize) => {
   }
 };
 
-//+++++++++++++++++++++++++++++++++
-//sticky navigation bar
-//+++++++++++++++++++++++++++++++++
+// ***************************************************************************
+//sticky navigation bar. setting IntersectionObserver to observe when
+//the user input section is out of the viewport and then adding a sticky class
+// ***************************************************************************
 const sectionUser = document.querySelector(".user-box");
 
 const obs = new IntersectionObserver(
