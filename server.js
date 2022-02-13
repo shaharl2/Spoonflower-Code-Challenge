@@ -46,9 +46,8 @@ function addData(req, res) {
   projectData["id"] = req.body.id;
   projectData["name"] = req.body.name;
   projectData["designer"] = req.body.designer;
+  projectData["category"] = req.body.category;
   projectData["product"] = req.body.product;
-  // projectData["term"] = req.body.term;
-  // projectData["sort"] = req.body.sort;
   console.log(req.body);
   res.send(projectData);
   console.log(projectData);

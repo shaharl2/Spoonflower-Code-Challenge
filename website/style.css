@@ -249,7 +249,7 @@ ul {
 .design-name:visited {
   text-decoration: none;
   color: #333;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 1.6rem;
   transition: all 0.3s;
 }
@@ -260,7 +260,7 @@ ul {
 }
 
 .designer-box {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .designer-name {
@@ -273,6 +273,8 @@ ul {
   align-items: center;
   padding-top: 1rem;
   border-top: 1px solid #ddd;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
   line-height: 1.8;
 }
 
@@ -288,6 +290,15 @@ ul {
 .designer-name:hover,
 .designer-name:active {
   color: teal;
+}
+
+.productID {
+  display: none;
+}
+
+.product-category {
+  font-size: 1.4rem;
+  padding-top: 1rem;
 }
 
 .user-box {
@@ -638,7 +649,7 @@ body {
 }
 
 .testimonials-container {
-  padding: 9.6rem;
+  padding: 6.6rem;
 }
 
 .testimonials {

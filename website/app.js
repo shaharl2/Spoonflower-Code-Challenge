@@ -31,6 +31,10 @@ let designPics = [];
 let designers = [];
 //array to store the design name
 let designName = [];
+//array to store the design ID
+let designID = [];
+//array to store the product category
+let category = [];
 
 // Function called by event listeners
 
@@ -66,6 +70,7 @@ function performAction(event) {
         id: data.page_results[step].designId,
         name: data.page_results[step].name,
         designer: data.page_results[step].user.screenName,
+        category: data.page_results[step].productListing.name,
         term: newTerm,
         sort: newSort,
         product: newProduct,
@@ -74,10 +79,12 @@ function performAction(event) {
       });
     }
   });
-  //store the designs images, the designer names and design names in arrays
+  //store the designs images, the designer names, design names, productIDs, and product category in arrays
   designPics = Array.from(document.getElementsByClassName("design-pic"));
   designers = Array.from(document.getElementsByClassName("designer-name"));
   designName = Array.from(document.getElementsByClassName("design-name"));
+  designID = Array.from(document.getElementsByClassName("productID"));
+  category = Array.from(document.getElementsByClassName("product-category"));
 }
 
 /* Function to GET Web API Data*/
@@ -149,12 +156,16 @@ const getDefault = async (baseURL) => {
   try {
     const data = await res.json();
     console.log(data.page_results);
+    console.log(data.total_page_results);
+
     //calling the function to dynamically built the HTML elements to store the designs
     designElements(data.page_results.length);
     //after we built the elements, we can store the designs images, the designer names and design names in arrays
     designPics = Array.from(document.getElementsByClassName("design-pic"));
     designers = Array.from(document.getElementsByClassName("designer-name"));
     designName = Array.from(document.getElementsByClassName("design-name"));
+    designID = Array.from(document.getElementsByClassName("productID"));
+    category = Array.from(document.getElementsByClassName("product-category"));
 
     return data;
   } catch (error) {
@@ -173,6 +184,8 @@ getDefault(baseURL).then(function (data) {
       id: data.page_results[step].designId,
       name: data.page_results[step].name,
       designer: data.page_results[step].user.screenName,
+      category: data.page_results[step].productListing.name,
+      product: data.page_results[step].productListing.name,
     });
   }
   console.log(data.page_results);
@@ -193,14 +206,18 @@ const postData = async (url = "", data = {}) => {
 
   try {
     const newData = await response.json();
-    //handling direrrent image src for fabric, wallpaper and home decor
-    if (newData.product === "Wallpaper" || newData.product === "Living_Decor") {
-      designPics.shift().src = `https://garden.spoonflower.com/c/${newData.id}/i/m/${newData.image}`;
-    } else
-      designPics.shift().src = `https://garden.spoonflower.com/c/${newData.id}/p/f/m/${newData.image}`;
-
-    designers.shift().innerHTML = `${newData.designer}`;
+    //handling different image src for different product categories
+    designPics.shift().src =
+      newData.product === "FABRIC"
+        ? `https://garden.spoonflower.com/c/${newData.id}/p/f/m/${newData.image}`
+        : `https://garden.spoonflower.com/c/${newData.id}/i/m/${newData.image}`;
+    designers.shift().innerHTML = newData.designer;
     designName.shift().innerHTML = newData.name;
+    designID.shift().innerHTML = newData.id;
+    //removing the "HOME GOOD" substring from the category name string. removing the "_" chars
+    category.shift().innerHTML = newData.category.includes("HOME")
+      ? newData.category.slice(10).replaceAll("_", " ")
+      : newData.category.replaceAll("_", " ");
 
     return newData;
   } catch (error) {
@@ -229,24 +246,20 @@ const updateUR = async (event) => {
 //not, green shadow if yes.
 // *********************************
 const checkpass = () => {
-  if (
-    document.getElementById("password").value ===
-    document.getElementById("confirm-password").value
-  ) {
-    document
-      .getElementById("confirm-password")
-      .style.setProperty(
-        "--box-shadow",
-        "0 0 0 0.8rem rgba(18, 241, 10, 0.63)"
-      );
-  } else {
-    document
-      .getElementById("confirm-password")
-      .style.setProperty(
-        "--box-shadow",
-        "0 0 0 0.8rem rgba(218, 19, 19, 0.877)"
-      );
-  }
+  document.getElementById("password").value ===
+  document.getElementById("confirm-password").value
+    ? document
+        .getElementById("confirm-password")
+        .style.setProperty(
+          "--box-shadow",
+          "0 0 0 0.8rem rgba(18, 241, 10, 0.63)"
+        )
+    : document
+        .getElementById("confirm-password")
+        .style.setProperty(
+          "--box-shadow",
+          "0 0 0 0.8rem rgba(218, 19, 19, 0.877)"
+        );
 };
 
 // *******************************************************************
@@ -256,8 +269,6 @@ const checkpass = () => {
 
 const designElements = (pageSize) => {
   for (let i = 0; i < pageSize; i++) {
-    // for (let i = 0; i < data.total_page_results; i++) { ??????
-
     // *************************************
     // storing the diffrent HTML elements
     // *************************************
@@ -271,7 +282,7 @@ const designElements = (pageSize) => {
     const newAnch = document.createElement("a");
     const newPar = document.createElement("p");
     const newAnch2 = document.createElement("a");
-    const newAnch3 = document.createElement("a");
+    const newDiv4 = document.createElement("div");
 
     // *************************************
     // creating attributes
@@ -286,21 +297,14 @@ const designElements = (pageSize) => {
     newImg.setAttribute("alt", "");
     newDiv3.className = "design-text";
     newSpan.setAttribute("itemprop", "name");
-    newSpan2.className = "";
-    newSpan2.setAttribute("itemprop", "productID");
+    newSpan2.className = "productID";
     newAnch.setAttribute("href", "");
     newAnch.className = "design-name";
-    newAnch.setAttribute("title", "");
-    newAnch.setAttribute("itemprop", "");
     newPar.className = "designer-box";
-    newPar.textContent = "Designer:";
+    newPar.textContent = "Designer: ";
     newAnch2.setAttribute("href", "");
     newAnch2.className = "designer-name";
-    newAnch2.setAttribute("title", "");
-    newAnch2.setAttribute("itemprop", "");
-    newAnch3.className = "";
-    newAnch3.setAttribute("href", "");
-    newAnch3.textContent = "back home";
+    newDiv4.className = "product-category";
 
     // *****************************************
     // appending the elements in the design card
@@ -314,7 +318,7 @@ const designElements = (pageSize) => {
     newDiv3.appendChild(newAnch);
     newDiv3.appendChild(newPar);
     newPar.appendChild(newAnch2);
-    newDiv.appendChild(newAnch3);
+    newDiv.appendChild(newDiv4);
 
     // ***********************************************
     // adding the new design card to the designs array
@@ -340,13 +344,10 @@ const sectionUser = document.querySelector(".user-box");
 const obs = new IntersectionObserver(
   function (entries) {
     const ent = entries[0];
-    //adding and removing an acticve class
-    if (ent.isIntersecting === false) {
-      document.body.classList.add("sticky");
-    }
-    if (ent.isIntersecting === true) {
-      document.body.classList.remove("sticky");
-    }
+    //adding and removing an active class
+    ent.isIntersecting
+      ? document.body.classList.remove("sticky")
+      : document.body.classList.add("sticky");
   },
   {
     // In the viewport
