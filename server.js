@@ -17,11 +17,9 @@ app.use(bodyParser.json());
 const cors = require("cors");
 app.use(cors());
 
-// Initialize the main project folder
+// Initialize the project folders
 app.use(express.static("website"));
 app.use(express.static("img"));
-
-// app.use(express.static("public"));
 
 // Setup Server
 
@@ -33,9 +31,9 @@ const server = app.listen(port, () => {
 
 // Callback function to complete GET '/all'
 
-app.get("/all", (req, res) => {
-  res.send(projectData);
-});
+// app.get("/all", (req, res) => {
+//   res.send(projectData);
+// });
 
 // Post Route
 
@@ -48,7 +46,6 @@ function addData(req, res) {
   projectData["designer"] = req.body.designer;
   projectData["category"] = req.body.category;
   projectData["product"] = req.body.product;
-  console.log(req.body);
   res.send(projectData);
   console.log(projectData);
 }

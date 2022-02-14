@@ -3,8 +3,6 @@ const APIsort = "&sort=";
 const APIproduct = "&product=";
 const APIcolor = "&color=";
 const APIstyle = "&style=";
-// array to hold the design cards
-const designsArray = [];
 
 // the designs will be dynamically appended to the container
 const designsContainer = document.querySelector(".container");
@@ -25,6 +23,9 @@ document
   .getElementById("style-select")
   .addEventListener("change", performAction);
 
+// array to hold the design cards
+const designsArray = [];
+
 //array to store the design images src
 let designPics = [];
 //array to store the designers names
@@ -44,8 +45,6 @@ function performAction(event) {
   const newProduct = document.getElementById("product-select").value;
   const newColor = document.getElementById("color-select").value;
   const newStyle = document.getElementById("style-select").value;
-  const newEvent = event.currentTarget.textContent;
-
   // Function to GET Web API Data
 
   getData(
@@ -58,11 +57,8 @@ function performAction(event) {
     APIcolor,
     newColor,
     APIstyle,
-    newStyle,
-    newEvent
+    newStyle
   ).then(function (data) {
-    console.log(data.query_hit_count.total_listings);
-
     for (let step = 0; step < data.total_page_results; step++) {
       // Add data
       postData("/addData", {
@@ -134,12 +130,6 @@ const getData = async (
 
   try {
     const data = await res.json();
-    console.log(data.page_results);
-    console.log(sort);
-    console.log(product);
-    console.log(color);
-    console.log(style);
-
     return data;
   } catch (error) {
     console.log("error", error);
@@ -155,9 +145,6 @@ const getDefault = async (baseURL) => {
   const res = await fetch(baseURL);
   try {
     const data = await res.json();
-    console.log(data.page_results);
-    console.log(data.total_page_results);
-
     //calling the function to dynamically built the HTML elements to store the designs
     designElements(data.page_results.length);
     //after we built the elements, we can store the designs images, the designer names and design names in arrays
@@ -188,7 +175,6 @@ getDefault(baseURL).then(function (data) {
       product: data.page_results[step].productListing.name,
     });
   }
-  console.log(data.page_results);
 });
 
 /* Function to POST data */
@@ -206,9 +192,12 @@ const postData = async (url = "", data = {}) => {
 
   try {
     const newData = await response.json();
+    //capitilizing the product string
+    let productString =
+      newData.product[0] + newData.product.substring(1).toLowerCase();
     //handling different image src for different product categories
     designPics.shift().src =
-      newData.product === "FABRIC"
+      productString === "Fabric"
         ? `https://garden.spoonflower.com/c/${newData.id}/p/f/m/${newData.image}`
         : `https://garden.spoonflower.com/c/${newData.id}/i/m/${newData.image}`;
     designers.shift().innerHTML = newData.designer;
@@ -224,18 +213,6 @@ const postData = async (url = "", data = {}) => {
     console.log("error", error);
   }
   console.log(data);
-};
-
-const updateUR = async (event) => {
-  const request = await fetch("/all");
-  try {
-    const allData = await request.json();
-    console.log(allData.total_page_results);
-    console.log(allData);
-    console.log(allData.id);
-  } catch (error) {
-    console.log("error", error);
-  }
 };
 
 // *********************************
